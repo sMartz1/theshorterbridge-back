@@ -4,10 +4,14 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(cors());
 require("dotenv").config();
+
 const PORT = process.env.PORT_SERVER;
+const {connection} = require('./database/mongo');
+
+app.get("/:short", require("./controllers/url/getUrl"));
 app.use("/api", require("./routes"));
-app.listen(PORT,()=>{
-    let randomNumber = Math.random() * (10000 - 0) + 0;
-    let stringGenerated = randomNumber.toString(5);
-    console.log("Server running...",stringGenerated);
-})
+
+app.listen(PORT, () => {
+  console.log("Server running...");
+  connection();
+});
