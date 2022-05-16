@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'); 
-const { nanoid } = require('nanoid');
+
 
 var linkSchema = new mongoose.Schema({
     url:{
@@ -8,8 +8,7 @@ var linkSchema = new mongoose.Schema({
     },
     shortUrl:{
         type:String,
-        required:true,
-        default:nanoid(5)
+        required:true
     },
     screenshot:{
         type:String,

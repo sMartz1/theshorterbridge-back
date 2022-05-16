@@ -1,8 +1,12 @@
 const {getLink} = require('../../Managers/linkManager');
 
-async function postUrl(req, res) {
+async function getUrl(req, res) {
     const link = await getLink(req.params.short)
-    res.status(200).json(link.url);
+    if(link !== null){res.status(200).json(link.url);}else{
+      res.status(404).json("not found")
+    }
+    
+    
   }
   
-  module.exports = postUrl;
+  module.exports = getUrl;

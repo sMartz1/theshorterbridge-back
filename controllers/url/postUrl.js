@@ -1,8 +1,10 @@
 const {createLink} = require('../../Managers/linkManager');
 
 async function postUrl(req, res) {
-    const link = await createLink(req.body.url)
-    res.status(200).json(link.shortUrl);
+    let params = [req.body.url]
+    if(req.body.user)params.push(req.body.user);
+    const link = await createLink(...params);
+    res.status(200).json(link);
   }
   
   module.exports = postUrl;
